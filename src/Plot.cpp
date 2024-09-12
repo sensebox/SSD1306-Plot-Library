@@ -1,6 +1,11 @@
 #include "Plot.h"
-#include <avr/dtostrf.h>
-
+#if defined(ESP8266) || defined(ESP32)
+  #include <stdlib_noniso.h>
+  #define min _min
+  #define max _max
+#else
+  #include <avr/dtostrf.h>
+#endif
 
 Plot::Plot(Adafruit_SSD1306 *display) {
     _display = display;
